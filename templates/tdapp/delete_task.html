@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task delete page</title>
+</head>
+<body>
+    <p>Are you sure you want to delete "{{ task }}"?</p>
+<form action="{% url 'tdapp:delete' task.id %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <a href="{% url 'tdapp:home' %} " class="btn btn-sm btn-danger">Cancel</a>
+    <input type="submit" name="Confirm" id="add_word_button">
+</form>
+</body>
+</html>
