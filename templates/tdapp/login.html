@@ -1,6 +1,17 @@
 {% extends 'tdapp/base.html' %}
 {% block content %}
 
-<h1>Login page greets you</h1>
+<div class="container">
+			<h3>Login</h3>
 
+		<form action="#" method="POST">
+            {% csrf_token %}
+			<input type="text" name="username" placeholder="username" class="field">
+			<input type="password" name="password" placeholder="password" class="field">
+			<input type="submit" value="Login" class="btn">
+		</form>
+		{% comment %}<div class="pass-link">
+			<a href="{% url  %}" >Lost your password?</a>
+		</div>{% endcomment %}
+	</div>
 {% endblock %}

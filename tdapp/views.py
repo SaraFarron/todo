@@ -9,7 +9,7 @@ from django.contrib.auth import authenticate, logout, login
 from django.contrib.auth.decorators import login_required
 
 
-@login_required(login_url='login')
+# @login_required(login_url='login')
 def index(request):
 
     tasks = Task.objects.all()
@@ -67,7 +67,7 @@ def login_page(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('train:index')
+            return redirect('tdapp:home')
         else:
             messages.info(request, 'Username or password is incorrect')
 

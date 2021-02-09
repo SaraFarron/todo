@@ -1,7 +1,17 @@
 {% extends 'tdapp/base.html' %}
 {% block content %}
 
-    <h1>Register page greets you</h1>
+			<h3>Register</h3>
+		<form action="#" method="POST">
+        {% csrf_token %}
+{#			<input type="text" placeholder="username" class="field">#}
+            {{ form.username }}
+{#			<input type="password" placeholder="password" class="field">#}
+            {{ form.password1 }}
+{#            <input type="password" placeholder="confirm password" class="field">#}
+            {{ form.password2 }}
+			<input type="submit" value="Register Account" class="btn">
+		</form>
 
 {% endblock %}
 
