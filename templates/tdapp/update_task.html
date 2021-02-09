@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Task update page</title>
-</head>
-<body>
+{% extends 'tdapp/base.html' %}
+{% block content %}
+
 <form action="" method="post">
     {% csrf_token %}
     {{ form }}
 </form>
-</body>
-</html>
+
+{% endblock %}

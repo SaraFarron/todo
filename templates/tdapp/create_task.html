@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Task create page</title>
-</head>
-<body>
+{% extends 'tdapp/base.html' %}
+{% block content %}
+
 <form action="" method="post">
     {% csrf_token %}
     {{ form }}
     <input type="submit" name="Submit" class="btn btn-sm btn-success">
 </form>
-</body>
-</html>
+
+{% endblock %}
