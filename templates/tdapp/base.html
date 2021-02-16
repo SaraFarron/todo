@@ -30,7 +30,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
-        <h1>SerahFarron's todo list </h1>
+        <h1>Hello, {{ request.user }} </h1>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
           <a class="nav-link" href="{% url 'tdapp:home' %}">Home
@@ -38,13 +38,16 @@
               </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'tdapp:register' %}">Login/Register</a>
+          <a class="nav-link" href="{% url 'tdapp:register' %}">Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'tdapp:login' %}">Login</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'tdapp:profile' %}">Profile</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Logout</a>
+          <a class="nav-link" href="{% url 'tdapp:logout' %}">Logout</a>
         </li>
       </ul>
     </div>

@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
+
 from .models import *
 from .forms import *
+from .decorators import *
 
 from django.contrib import messages
 
@@ -18,7 +20,7 @@ def index(request):
     return render(request, 'index.html', context)
 
 
-@login_required(login_url='login')
+# @login_required(login_url='login')
 def create_task(request):
 
     if request.method == 'POST':
@@ -32,7 +34,7 @@ def create_task(request):
     return render(request, 'tdapp/create_task.html', context)
 
 
-@login_required(login_url='login')
+# @login_required(login_url='login')
 def update_task(request, pk):
 
     task = Task.objects.get(id=pk)
@@ -47,7 +49,7 @@ def update_task(request, pk):
     return render(request, 'tdapp/create_task.html', context)
 
 
-@login_required(login_url='login')
+# @login_required(login_url='login')
 def delete_task(request, pk):
 
     task = Task.objects.get(id=pk)
@@ -59,6 +61,7 @@ def delete_task(request, pk):
     return render(request, 'tdapp/delete_task.html', context)
 
 
+@unauthenticated_user
 def login_page(request):
 
     if request.method == 'POST':
