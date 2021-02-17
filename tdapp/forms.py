@@ -7,7 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 class TaskForm(ModelForm):
     class Meta:
         model = Task
-        fields = '__all__'
+        fields = ['name', 'text', 'done']
 
 
 class CreateUserForm(UserCreationForm):

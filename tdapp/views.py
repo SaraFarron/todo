@@ -11,21 +11,23 @@ from django.contrib.auth import authenticate, logout, login
 from django.contrib.auth.decorators import login_required
 
 
-# @login_required(login_url='login')
+@login_required(login_url='login')
 def index(request):
 
-    tasks = Task.objects.all()
+    # tasks = Task.objects.all()
+    tasks = Guest.objects.all()
 
     context = {'tasks': tasks}
     return render(request, 'index.html', context)
 
 
-# @login_required(login_url='login')
+@login_required(login_url='login')
 def create_task(request):
 
     if request.method == 'POST':
         form = TaskForm(request.POST)
         if form.is_valid():
+            form.instance.user = request.user   
             form.save()
             return redirect('tdapp:home')
     form = TaskForm
@@ -34,7 +36,7 @@ def create_task(request):
     return render(request, 'tdapp/create_task.html', context)
 
 
-# @login_required(login_url='login')
+@login_required(login_url='login')
 def update_task(request, pk):
 
     task = Task.objects.get(id=pk)
@@ -43,13 +45,14 @@ def update_task(request, pk):
         form = TaskForm(request.POST, instance=task)
         if form.is_valid():
             form.save()
-            return redirect('tdapp:home')
+            return redirect('/guest/' + str(task.user.id))
+            # return redirect('/customer/' + str(order.customer.id))
 
     context = {'form': form}
     return render(request, 'tdapp/create_task.html', context)
 
 
-# @login_required(login_url='login')
+@login_required(login_url='login')
 def delete_task(request, pk):
 
     task = Task.objects.get(id=pk)
@@ -87,7 +90,7 @@ def register_page(request):
             user = form.save()
             username = form.cleaned_data.get('username')
 
-            group = Group.objects.get('guest')
+            group = Group.objects.get(name='guest')
             user.groups.add(group)
             Guest.objects.create(
                 user=user,
