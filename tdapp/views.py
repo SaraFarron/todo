@@ -15,7 +15,7 @@ from django.contrib.auth.decorators import login_required
 def index(request):
 
     # tasks = Task.objects.all()
-    tasks = Guest.objects.all()
+    tasks = Task.objects.filter(user=request.user)
 
     context = {'tasks': tasks}
     return render(request, 'index.html', context)
@@ -27,7 +27,7 @@ def create_task(request):
     if request.method == 'POST':
         form = TaskForm(request.POST)
         if form.is_valid():
-            form.instance.user = request.user   
+            form.instance.user = request.user
             form.save()
             return redirect('tdapp:home')
     form = TaskForm
