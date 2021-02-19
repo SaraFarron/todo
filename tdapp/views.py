@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.template import loader
 
 from .models import *
 from .forms import *
@@ -6,16 +7,18 @@ from .decorators import *
 
 from django.contrib import messages
 
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import Group
 from django.contrib.auth import authenticate, logout, login
 from django.contrib.auth.decorators import login_required
 
 
-@login_required(login_url='login')
 def index(request):
 
-    # tasks = Task.objects.all()
-    tasks = Task.objects.filter(user=request.user)
+    try:
+        tasks = Task.objects.filter(user=request.user)
+    except TypeError:
+        template = loader.get_template('tdapp/unauth.html')
+        return HttpResponse(template.render())
 
     context = {'tasks': tasks}
     return render(request, 'index.html', context)
@@ -46,7 +49,6 @@ def update_task(request, pk):
         if form.is_valid():
             form.save()
             return redirect('/guest/' + str(task.user.id))
-            # return redirect('/customer/' + str(order.customer.id))
 
     context = {'form': form}
     return render(request, 'tdapp/create_task.html', context)
@@ -108,7 +110,3 @@ def register_page(request):
 def logout_user(request):
     logout(request)
     return redirect('tdapp:login')
-
-
-def profile_page(request):
-    pass

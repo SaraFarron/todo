@@ -25,7 +25,7 @@ SECRET_KEY = 'oapyi(qv(46653wsd3qp3x&$ujm)_fci8ish7#3&62=j%@&9#t'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
