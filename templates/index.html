@@ -12,12 +12,15 @@
         <span>{{ task.text }}</span>
     </h2>
   <p></p>
-  <a href="{% url 'tdapp:update' task.id %}" class="btn btn-sm btn-info">Update</a>
-  <a href="{% url 'tdapp:delete' task.id %}" class="btn btn-sm btn-danger">Delete</a>
+  <a href="{% url 'tdapp:update' task.id %}" class="btn btn-sm btn-info"
+     style="width: 49%">Update</a>
+  <a href="{% url 'tdapp:delete' task.id %}" class="btn btn-sm btn-danger"
+     style="width: 49%">Delete</a>
   </div>
     {% endfor %}
 <p></p>
-    <a href="{% url 'tdapp:create' %}" class="btn btn-sm btn-success">Create</a>
+    <a href="{% url 'tdapp:create' %}" class="btn btn-sm btn-success"
+    style="width: 100%">Create</a>
 </div>
 
 {% endblock %}

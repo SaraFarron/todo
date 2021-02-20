@@ -83,6 +83,7 @@ def login_page(request):
     return render(request, 'tdapp/login.html', context)
 
 
+@unauthenticated_user
 def register_page(request):
 
     form = CreateUserForm

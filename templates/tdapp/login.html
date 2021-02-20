@@ -8,10 +8,8 @@
             {% csrf_token %}
 			<input type="text" name="username" placeholder="username" class="field">
 			<input type="password" name="password" placeholder="password" class="field">
-			<input type="submit" value="Login" class="btn">
+			<input type="submit" value="Login" class="btn btn-success"
+            style="position: absolute; top: 27%; width: 22.8%; left: 39%;">
 		</form>
-		{% comment %}<div class="pass-link">
-			<a href="{% url  %}" >Lost your password?</a>
-		</div>{% endcomment %}
 	</div>
 {% endblock %}
